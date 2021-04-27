@@ -14,7 +14,19 @@ export default class App extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
-      // texto: '',
+      texto: '',
+      markers: [
+        {
+          key: 0,
+          coords: {latitude: -15.8080374, longitude: -47.8750231},
+          pinColor: 'green',
+        },
+        {
+          key: 1,
+          coords: {latitude: -15.8380374, longitude: -47.8850231},
+          pinColor: 'blue',
+        },
+      ],
     };
 
     //#region  Binds
@@ -22,6 +34,7 @@ export default class App extends Component {
     // this.moverCidade = this.moverCidade.bind(this);
     // this.mudouMapa = this.mudouMapa.bind(this);
     // this.clicou = this.clicou.bind(this);
+    this.newMarker = this.newMarker.bind(this);
 
     //#endregion
   }
@@ -60,6 +73,23 @@ export default class App extends Component {
 
   //#region Fução Clicou
 
+  //#region  Função para adicionar um marcador quando clicar no mapa.
+
+  newMarker(event) {
+    let state = this.state;
+    state.markers.push({
+      key: state.markers.length,
+      coords: {
+        latitude: event.nativeEvent.coordinate.latitude,
+        longitude: event.nativeEvent.coordinate.longitude,
+      },
+      pinColor: 'pink',
+    });
+    this.setState(state);
+  }
+
+  //#endregion
+
   // clicou(event) {
   //   alert(
   //     'Latitude:' +
@@ -72,7 +102,7 @@ export default class App extends Component {
   //#endregion
 
   render() {
-    const {region, texto} = this.state;
+    const {region, texto, markers} = this.state;
 
     return (
       <View style={styled.container}>
@@ -136,14 +166,26 @@ export default class App extends Component {
           //showsTraffic={true}
           // ------------------------------------------------------------------------------------------------------------------------------------
 
+          onPress={this.newMarker}
           style={styled.maps}
           region={region}>
-          <Marker
+          {/* Marcador fixo
+          <Marker-----------------------------------------------------------------------------------------------------------------------------
             coordinate={{latitude: -3.71839, longitude: -38.5434}}
             pinColor={'green'}
             title={'Teste'}
             description={'Teste de descrição'}
-          />
+          />-------------------------------------------------------------------------------------------------------------------------------- */}
+
+          {markers.map(marker => {
+            return (
+              <Marker
+                key={marker.key}
+                coordinate={marker.coords}
+                pinColor={marker.pinColor}
+              />
+            );
+          })}
         </MapView>
       </View>
     );
