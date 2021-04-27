@@ -17,13 +17,15 @@ export default class App extends Component {
       texto: '',
       markers: [
         {
+          image: require('./assets/images/carro_down.png'),
           key: 0,
-          coords: {latitude: -15.8080374, longitude: -47.8750231},
+          coords: {latitude: -3.71855, longitude: -38.5449},
           pinColor: 'green',
         },
         {
+          image: require('./assets/images/carro_left.png'),
           key: 1,
-          coords: {latitude: -15.8380374, longitude: -47.8850231},
+          coords: {latitude: -3.71884, longitude: -38.5497},
           pinColor: 'blue',
         },
       ],
@@ -166,7 +168,7 @@ export default class App extends Component {
           //showsTraffic={true}
           // ------------------------------------------------------------------------------------------------------------------------------------
 
-          onPress={this.newMarker}
+          // onPress={this.newMarker}
           style={styled.maps}
           region={region}>
           {/* Marcador fixo
@@ -180,6 +182,7 @@ export default class App extends Component {
           {markers.map(marker => {
             return (
               <Marker
+                image={marker.image}
                 key={marker.key}
                 coordinate={marker.coords}
                 pinColor={marker.pinColor}
