@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 
 export default class App extends Component {
   constructor(props) {
@@ -137,8 +137,14 @@ export default class App extends Component {
           // ------------------------------------------------------------------------------------------------------------------------------------
 
           style={styled.maps}
-          region={region}
-        />
+          region={region}>
+          <Marker
+            coordinate={{latitude: -3.71839, longitude: -38.5434}}
+            pinColor={'green'}
+            title={'Teste'}
+            description={'Teste de descrição'}
+          />
+        </MapView>
       </View>
     );
   }
