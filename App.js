@@ -14,14 +14,14 @@ export default class App extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
-      texto: '',
+      // texto: '',
     };
 
     //#region  Binds
 
     // this.moverCidade = this.moverCidade.bind(this);
     // this.mudouMapa = this.mudouMapa.bind(this);
-    this.clicou = this.clicou.bind(this);
+    // this.clicou = this.clicou.bind(this);
 
     //#endregion
   }
@@ -60,14 +60,14 @@ export default class App extends Component {
 
   //#region Fução Clicou
 
-  clicou(event) {
-    alert(
-      'Latitude:' +
-        event.nativeEvent.coordinate.latitude +
-        '\nLongitude:' +
-        event.nativeEvent.coordinate.longitude,
-    );
-  }
+  // clicou(event) {
+  //   alert(
+  //     'Latitude:' +
+  //       event.nativeEvent.coordinate.latitude +
+  //       '\nLongitude:' +
+  //       event.nativeEvent.coordinate.longitude,
+  //   );
+  // }
 
   //#endregion
 
@@ -94,20 +94,48 @@ export default class App extends Component {
         <Text>
           {region.latitude} | {region.longitude}
         </Text>
-        <Text>Latitude Atual</Text>
+        <Text>Coordenadas Atual</Text>
         <Text>{texto}</Text>
 
         <MapView
+          // Eventos ---------------------------------------------------------------------------------------------------------------------------
           // Chamado quando carrega totalmente o mapa
           // onMapReady={() => {
           //   alert('Mapa carregado');
-          // }}
+          // }}----------------------------------------------------------------------------------------------------------------------------------
 
           // Evento disparado quando vc arrasta o mapa e solta;
           // onRegionChangeComplete={this.mudouMapa}
 
           //  Evento para fazer algo quando se clica no mapa;
-          onPress={this.clicou}
+          // onPress={this.clicou}
+          //
+
+          // Tipos de mapas ------------------------------------------------------------------------------------------------------------------
+          // Padrão
+          //mapType="standard"
+
+          // Visão de satelite
+          //mapType="satellite"
+
+          // standard + satelite
+          // mapType="hybrid"
+          // ------------------------------------------------------------------------------------------------------------------------------------
+
+          // Algumas propriedades-----------------------------------------------------------------------------------------------------------
+          // Fixa o mapa. Não é possível mexer no mapa;
+          // scrollEnabled={false}
+
+          // Inativar o zoom;
+          // zoomEnabled={false}]
+
+          // Rotação;
+          //rotateEnabled={false}
+
+          // Tráfico nas vias;
+          //showsTraffic={true}
+          // ------------------------------------------------------------------------------------------------------------------------------------
+
           style={styled.maps}
           region={region}
         />
